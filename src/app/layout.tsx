@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { APP_VERSION } from "@/constants/version";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -18,7 +19,9 @@ export default function RootLayout({
         <main className="w-full h-[calc(100dvh-18dvh)] px-6 py-8 overflow-y-auto overflow-x-hidden scrollbar-hide antialiased border-2">
           {children}
         </main>
-        <footer className="sticky bottom-0 flex justify-center items-center w-full h-[9dvh] px-5 bg-gray-300" />
+        <footer className="sticky bottom-0 flex justify-center items-center w-full h-[9dvh] px-5 bg-gray-300">
+          <p className="absolute right-6">ver {APP_VERSION}</p>
+        </footer>
       </body>
     </html>
   );

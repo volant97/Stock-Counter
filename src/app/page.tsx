@@ -34,6 +34,10 @@ export default function Home() {
     }
   };
 
+  const handleResetBtnOnClick = () => {
+    setCounts(Array(items.length).fill(0));
+  };
+
   return (
     <div className="">
       <h1>음료 냉장고 1</h1>
@@ -47,7 +51,9 @@ export default function Home() {
             onMouseLeave={handleLongPressEnd}
             onTouchStart={() => handleLongPressStart(i)}
             onTouchEnd={handleLongPressEnd}
-            className="relative flex justify-center items-center bg-gray-200 rounded-lg shadow-md p-2 h-20 text-center hover:drop-shadow-md transition-all"
+            className={`relative flex justify-center items-center active:bg-yellow-200 rounded-lg shadow-md p-2 h-20 text-center hover:drop-shadow-md transition-all ${
+              counts[i] === 0 ? "bg-gray-200" : "bg-red-200"
+            }`}
           >
             <p>{v}</p>
             <div className="absolute -top-1 -right-1 flex justify-center items-center size-6 bg-red-400 rounded-full">
@@ -58,6 +64,12 @@ export default function Home() {
           </div>
         ))}
       </div>
+      <button
+        onClick={handleResetBtnOnClick}
+        className="w-40 h-14 rounded-xl bg-slate-300"
+      >
+        리셋
+      </button>
     </div>
   );
 }
