@@ -164,19 +164,19 @@ export const items: ItemsType[] = [
   },
   {
     name: "웰치스 포도",
-    shortName: "웰치 포도",
+    shortName: "웰치포도",
     displayZone: 2,
     defaultCount: 12,
   },
   {
     name: "웰치스 딸기",
-    shortName: "웰치 딸기",
+    shortName: "웰치딸기",
     displayZone: 2,
     defaultCount: 12,
   },
   {
     name: "제로 코카콜라",
-    shortName: "제로 콜라",
+    shortName: "제로콜라",
     displayZone: 2,
     defaultCount: 12,
   },
@@ -242,7 +242,7 @@ export const items: ItemsType[] = [
   },
   {
     name: "오징어 짬뽕",
-    shortName: "오징어짬뽕",
+    shortName: "오짬",
     displayZone: 3,
     defaultCount: 5,
   },
@@ -284,7 +284,7 @@ export const items: ItemsType[] = [
   },
   {
     name: "사천 짜파게티",
-    shortName: "사천 짜파",
+    shortName: "사천짜파",
     displayZone: 4,
     defaultCount: 5,
   },

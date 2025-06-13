@@ -39,6 +39,11 @@
 - 진열대 별로 구분
 - 우측 상단 카운트 CSS 수정
 
+#### 0.2.2
+
+- 카운트 개별 적용
+  - useState 구조 변경
+
 ### 추가 사항
 
 - git 연결
@@ -68,3 +73,7 @@
   - shortName: string
   - defaultCount: number
   - displayZone: number
+- 리셋 버튼 해당 진열대에만 적용
+- 창고 진열 순서에 따라 정렬
+- 저장 버튼 클릭 시 변동 방지
+- 카운트 한 품목만 filter되어 최종 확인 (전산 입력 때에도 활용 가능)

@@ -3,34 +3,26 @@ import { useRef, useState } from "react";
 import { items } from "@/data/items";
 
 export default function Home() {
-  const [counts, setCounts] = useState<Record<string, number>>(() => {
-    const initial: Record<string, number> = {};
-    items.forEach((v) => {
-      initial[v.shortName] = 0;
-    });
-    return initial;
-  });
+  const [counts, setCounts] = useState(Array(items.length).fill(0));
 
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const isLongPressedRef = useRef(false);
 
-  const handleItemBoxClick = (shortName: string) => {
+  const handleItemBoxClick = (index: number) => {
     if (isLongPressedRef.current) {
       isLongPressedRef.current = false;
       return;
     }
-    setCounts((prev) => ({
-      ...prev,
-      [shortName]: prev[shortName] + 1,
-    }));
+    const newCounts = [...counts];
+    newCounts[index] += 1;
+    setCounts(newCounts);
   };
 
-  const handleLongPressStart = (shortName: string) => {
+  const handleLongPressStart = (index: number) => {
     timerRef.current = setTimeout(() => {
-      setCounts((prev) => ({
-        ...prev,
-        [shortName]: 0,
-      }));
+      const newCounts = [...counts];
+      newCounts[index] = 0;
+      setCounts(newCounts);
       isLongPressedRef.current = true;
     }, 1500);
   };
@@ -43,11 +35,7 @@ export default function Home() {
   };
 
   const handleResetBtnOnClick = () => {
-    const reset: Record<string, number> = {};
-    items.forEach((v) => {
-      reset[v.shortName] = 0;
-    });
-    setCounts(reset);
+    setCounts(Array(items.length).fill(0));
   };
 
   return (
@@ -59,14 +47,14 @@ export default function Home() {
           .map((v, i) => (
             <div
               key={i}
-              onClick={() => handleItemBoxClick(v.shortName)}
-              onMouseDown={() => handleLongPressStart(v.shortName)}
+              onClick={() => handleItemBoxClick(i)}
+              onMouseDown={() => handleLongPressStart(i)}
               onMouseUp={handleLongPressEnd}
               onMouseLeave={handleLongPressEnd}
-              onTouchStart={() => handleLongPressStart(v.shortName)}
+              onTouchStart={() => handleLongPressStart(i)}
               onTouchEnd={handleLongPressEnd}
               className={`relative flex justify-center items-center active:bg-yellow-200 rounded-lg shadow-md p-2 h-20 text-center hover:drop-shadow-md transition-all ${
-                counts[v.shortName] === 0 ? "bg-gray-200" : "bg-red-200"
+                counts[i] === 0 ? "bg-gray-200" : "bg-red-200"
               }`}
             >
               <p>{v.shortName}</p>
@@ -75,13 +63,13 @@ export default function Home() {
               </div>
               <div
                 className={`absolute -top-1 -right-1 flex justify-center items-center size-6  rounded-full ${
-                  counts[v.shortName] === 0
+                  counts[i] === 0
                     ? "bg-gray-300 text-gray-400"
                     : "bg-red-400 text-yellow-100"
                 }`}
               >
                 <p className="text-sm font-semibold text-inherit">
-                  {counts[v.shortName]}
+                  {counts[i]}
                 </p>
               </div>
             </div>
@@ -100,14 +88,14 @@ export default function Home() {
           .map((v, i) => (
             <div
               key={i}
-              onClick={() => handleItemBoxClick(v.shortName)}
-              onMouseDown={() => handleLongPressStart(v.shortName)}
+              onClick={() => handleItemBoxClick(i)}
+              onMouseDown={() => handleLongPressStart(i)}
               onMouseUp={handleLongPressEnd}
               onMouseLeave={handleLongPressEnd}
-              onTouchStart={() => handleLongPressStart(v.shortName)}
+              onTouchStart={() => handleLongPressStart(i)}
               onTouchEnd={handleLongPressEnd}
               className={`relative flex justify-center items-center active:bg-yellow-200 rounded-lg shadow-md p-2 h-20 text-center hover:drop-shadow-md transition-all ${
-                counts[v.shortName] === 0 ? "bg-gray-200" : "bg-red-200"
+                counts[i] === 0 ? "bg-gray-200" : "bg-red-200"
               }`}
             >
               <p>{v.shortName}</p>
@@ -116,13 +104,13 @@ export default function Home() {
               </div>
               <div
                 className={`absolute -top-1 -right-1 flex justify-center items-center size-6  rounded-full ${
-                  counts[v.shortName] === 0
+                  counts[i] === 0
                     ? "bg-gray-300 text-gray-400"
                     : "bg-red-400 text-yellow-100"
                 }`}
               >
                 <p className="text-sm font-semibold text-inherit">
-                  {counts[v.shortName]}
+                  {counts[i]}
                 </p>
               </div>
             </div>
@@ -141,14 +129,14 @@ export default function Home() {
           .map((v, i) => (
             <div
               key={i}
-              onClick={() => handleItemBoxClick(v.shortName)}
-              onMouseDown={() => handleLongPressStart(v.shortName)}
+              onClick={() => handleItemBoxClick(i)}
+              onMouseDown={() => handleLongPressStart(i)}
               onMouseUp={handleLongPressEnd}
               onMouseLeave={handleLongPressEnd}
-              onTouchStart={() => handleLongPressStart(v.shortName)}
+              onTouchStart={() => handleLongPressStart(i)}
               onTouchEnd={handleLongPressEnd}
               className={`relative flex justify-center items-center active:bg-yellow-200 rounded-lg shadow-md p-2 h-20 text-center hover:drop-shadow-md transition-all ${
-                counts[v.shortName] === 0 ? "bg-gray-200" : "bg-red-200"
+                counts[i] === 0 ? "bg-gray-200" : "bg-red-200"
               }`}
             >
               <p>{v.shortName}</p>
@@ -157,13 +145,13 @@ export default function Home() {
               </div>
               <div
                 className={`absolute -top-1 -right-1 flex justify-center items-center size-6  rounded-full ${
-                  counts[v.shortName] === 0
+                  counts[i] === 0
                     ? "bg-gray-300 text-gray-400"
                     : "bg-red-400 text-yellow-100"
                 }`}
               >
                 <p className="text-sm font-semibold text-inherit">
-                  {counts[v.shortName]}
+                  {counts[i]}
                 </p>
               </div>
             </div>
@@ -182,14 +170,14 @@ export default function Home() {
           .map((v, i) => (
             <div
               key={i}
-              onClick={() => handleItemBoxClick(v.shortName)}
-              onMouseDown={() => handleLongPressStart(v.shortName)}
+              onClick={() => handleItemBoxClick(i)}
+              onMouseDown={() => handleLongPressStart(i)}
               onMouseUp={handleLongPressEnd}
               onMouseLeave={handleLongPressEnd}
-              onTouchStart={() => handleLongPressStart(v.shortName)}
+              onTouchStart={() => handleLongPressStart(i)}
               onTouchEnd={handleLongPressEnd}
               className={`relative flex justify-center items-center active:bg-yellow-200 rounded-lg shadow-md p-2 h-20 text-center hover:drop-shadow-md transition-all ${
-                counts[v.shortName] === 0 ? "bg-gray-200" : "bg-red-200"
+                counts[i] === 0 ? "bg-gray-200" : "bg-red-200"
               }`}
             >
               <p>{v.shortName}</p>
@@ -198,13 +186,13 @@ export default function Home() {
               </div>
               <div
                 className={`absolute -top-1 -right-1 flex justify-center items-center size-6  rounded-full ${
-                  counts[v.shortName] === 0
+                  counts[i] === 0
                     ? "bg-gray-300 text-gray-400"
                     : "bg-red-400 text-yellow-100"
                 }`}
               >
                 <p className="text-sm font-semibold text-inherit">
-                  {counts[v.shortName]}
+                  {counts[i]}
                 </p>
               </div>
             </div>
@@ -223,14 +211,14 @@ export default function Home() {
           .map((v, i) => (
             <div
               key={i}
-              onClick={() => handleItemBoxClick(v.shortName)}
-              onMouseDown={() => handleLongPressStart(v.shortName)}
+              onClick={() => handleItemBoxClick(i)}
+              onMouseDown={() => handleLongPressStart(i)}
               onMouseUp={handleLongPressEnd}
               onMouseLeave={handleLongPressEnd}
-              onTouchStart={() => handleLongPressStart(v.shortName)}
+              onTouchStart={() => handleLongPressStart(i)}
               onTouchEnd={handleLongPressEnd}
               className={`relative flex justify-center items-center active:bg-yellow-200 rounded-lg shadow-md p-2 h-20 text-center hover:drop-shadow-md transition-all ${
-                counts[v.shortName] === 0 ? "bg-gray-200" : "bg-red-200"
+                counts[i] === 0 ? "bg-gray-200" : "bg-red-200"
               }`}
             >
               <p>{v.shortName}</p>
@@ -239,13 +227,13 @@ export default function Home() {
               </div>
               <div
                 className={`absolute -top-1 -right-1 flex justify-center items-center size-6  rounded-full ${
-                  counts[v.shortName] === 0
+                  counts[i] === 0
                     ? "bg-gray-300 text-gray-400"
                     : "bg-red-400 text-yellow-100"
                 }`}
               >
                 <p className="text-sm font-semibold text-inherit">
-                  {counts[v.shortName]}
+                  {counts[i]}
                 </p>
               </div>
             </div>
@@ -264,14 +252,14 @@ export default function Home() {
           .map((v, i) => (
             <div
               key={i}
-              onClick={() => handleItemBoxClick(v.shortName)}
-              onMouseDown={() => handleLongPressStart(v.shortName)}
+              onClick={() => handleItemBoxClick(i)}
+              onMouseDown={() => handleLongPressStart(i)}
               onMouseUp={handleLongPressEnd}
               onMouseLeave={handleLongPressEnd}
-              onTouchStart={() => handleLongPressStart(v.shortName)}
+              onTouchStart={() => handleLongPressStart(i)}
               onTouchEnd={handleLongPressEnd}
               className={`relative flex justify-center items-center active:bg-yellow-200 rounded-lg shadow-md p-2 h-20 text-center hover:drop-shadow-md transition-all ${
-                counts[v.shortName] === 0 ? "bg-gray-200" : "bg-red-200"
+                counts[i] === 0 ? "bg-gray-200" : "bg-red-200"
               }`}
             >
               <p>{v.shortName}</p>
@@ -280,13 +268,13 @@ export default function Home() {
               </div>
               <div
                 className={`absolute -top-1 -right-1 flex justify-center items-center size-6  rounded-full ${
-                  counts[v.shortName] === 0
+                  counts[i] === 0
                     ? "bg-gray-300 text-gray-400"
                     : "bg-red-400 text-yellow-100"
                 }`}
               >
                 <p className="text-sm font-semibold text-inherit">
-                  {counts[v.shortName]}
+                  {counts[i]}
                 </p>
               </div>
             </div>
@@ -305,14 +293,14 @@ export default function Home() {
           .map((v, i) => (
             <div
               key={i}
-              onClick={() => handleItemBoxClick(v.shortName)}
-              onMouseDown={() => handleLongPressStart(v.shortName)}
+              onClick={() => handleItemBoxClick(i)}
+              onMouseDown={() => handleLongPressStart(i)}
               onMouseUp={handleLongPressEnd}
               onMouseLeave={handleLongPressEnd}
-              onTouchStart={() => handleLongPressStart(v.shortName)}
+              onTouchStart={() => handleLongPressStart(i)}
               onTouchEnd={handleLongPressEnd}
               className={`relative flex justify-center items-center active:bg-yellow-200 rounded-lg shadow-md p-2 h-20 text-center hover:drop-shadow-md transition-all ${
-                counts[v.shortName] === 0 ? "bg-gray-200" : "bg-red-200"
+                counts[i] === 0 ? "bg-gray-200" : "bg-red-200"
               }`}
             >
               <p>{v.shortName}</p>
@@ -321,13 +309,13 @@ export default function Home() {
               </div>
               <div
                 className={`absolute -top-1 -right-1 flex justify-center items-center size-6  rounded-full ${
-                  counts[v.shortName] === 0
+                  counts[i] === 0
                     ? "bg-gray-300 text-gray-400"
                     : "bg-red-400 text-yellow-100"
                 }`}
               >
                 <p className="text-sm font-semibold text-inherit">
-                  {counts[v.shortName]}
+                  {counts[i]}
                 </p>
               </div>
             </div>
