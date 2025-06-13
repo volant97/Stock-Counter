@@ -1,8 +1,9 @@
 "use client";
 import { useRef, useState } from "react";
+import { items } from "@/data/items";
 
 export default function Home() {
-  const items = ["콜라", "사이다", "환타", "울트라", "망고", "갈배"];
+  // const testItems = ["콜라", "사이다", "환타", "울트라", "망고", "갈배"];
   const [counts, setCounts] = useState(Array(items.length).fill(0));
 
   const timerRef = useRef<NodeJS.Timeout | null>(null);
@@ -55,7 +56,10 @@ export default function Home() {
               counts[i] === 0 ? "bg-gray-200" : "bg-red-200"
             }`}
           >
-            <p>{v}</p>
+            <p>{v.shortName}</p>
+            <div className="absolute top-1 left-1 opacity-30">
+              <p>{v.defaultCount}</p>
+            </div>
             <div className="absolute -top-1 -right-1 flex justify-center items-center size-6 bg-red-400 rounded-full">
               <p className="text-sm font-semibold text-yellow-100">
                 {counts[i]}
@@ -70,6 +74,7 @@ export default function Home() {
       >
         리셋
       </button>
+      <div>{items[0].name}</div>
     </div>
   );
 }
