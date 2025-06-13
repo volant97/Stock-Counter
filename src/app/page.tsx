@@ -78,6 +78,9 @@ export default function Home() {
                   counts[v.shortName] === 0
                     ? "bg-gray-300 text-gray-400"
                     : "bg-red-400 text-yellow-100"
+                } ${
+                  v.shortName === "" &&
+                  "opacity-50 pointer-events-none select-none"
                 }`}
               >
                 <p className="text-sm font-semibold text-inherit">
@@ -108,6 +111,9 @@ export default function Home() {
               onTouchEnd={handleLongPressEnd}
               className={`relative flex justify-center items-center active:bg-yellow-200 rounded-lg shadow-md p-2 h-20 text-center hover:drop-shadow-md transition-all ${
                 counts[v.shortName] === 0 ? "bg-gray-200" : "bg-red-200"
+              } ${
+                v.shortName === "" &&
+                "opacity-50 pointer-events-none select-none"
               }`}
             >
               <p>{v.shortName}</p>
@@ -149,6 +155,9 @@ export default function Home() {
               onTouchEnd={handleLongPressEnd}
               className={`relative flex justify-center items-center active:bg-yellow-200 rounded-lg shadow-md p-2 h-20 text-center hover:drop-shadow-md transition-all ${
                 counts[v.shortName] === 0 ? "bg-gray-200" : "bg-red-200"
+              } ${
+                v.shortName === "" &&
+                "opacity-50 pointer-events-none select-none"
               }`}
             >
               <p>{v.shortName}</p>
@@ -201,6 +210,9 @@ export default function Home() {
                   counts[v.shortName] === 0
                     ? "bg-gray-300 text-gray-400"
                     : "bg-red-400 text-yellow-100"
+                } ${
+                  v.shortName === "" &&
+                  "opacity-50 pointer-events-none select-none"
                 }`}
               >
                 <p className="text-sm font-semibold text-inherit">
@@ -231,6 +243,9 @@ export default function Home() {
               onTouchEnd={handleLongPressEnd}
               className={`relative flex justify-center items-center active:bg-yellow-200 rounded-lg shadow-md p-2 h-20 text-center hover:drop-shadow-md transition-all ${
                 counts[v.shortName] === 0 ? "bg-gray-200" : "bg-red-200"
+              } ${
+                v.shortName === "" &&
+                "opacity-50 pointer-events-none select-none"
               }`}
             >
               <p>{v.shortName}</p>
@@ -272,6 +287,9 @@ export default function Home() {
               onTouchEnd={handleLongPressEnd}
               className={`relative flex justify-center items-center active:bg-yellow-200 rounded-lg shadow-md p-2 h-20 text-center hover:drop-shadow-md transition-all ${
                 counts[v.shortName] === 0 ? "bg-gray-200" : "bg-red-200"
+              } ${
+                v.shortName === "" &&
+                "opacity-50 pointer-events-none select-none"
               }`}
             >
               <p>{v.shortName}</p>
@@ -313,6 +331,9 @@ export default function Home() {
               onTouchEnd={handleLongPressEnd}
               className={`relative flex justify-center items-center active:bg-yellow-200 rounded-lg shadow-md p-2 h-20 text-center hover:drop-shadow-md transition-all ${
                 counts[v.shortName] === 0 ? "bg-gray-200" : "bg-red-200"
+              } ${
+                v.shortName === "" &&
+                "opacity-50 pointer-events-none select-none"
               }`}
             >
               <p>{v.shortName}</p>
