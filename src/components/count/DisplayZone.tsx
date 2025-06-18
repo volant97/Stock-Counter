@@ -1,6 +1,7 @@
 "use client";
 import React, { useRef } from "react";
 import { items } from "@/data/items";
+import { ResetIcon } from "../icons/ResetIcon";
 
 interface DisplayZoneProps {
   displayZoneNum: number;
@@ -73,9 +74,23 @@ export const DisplayZone = ({
   };
 
   return (
-    <div className="flex flex-col gap-1">
-      <h1>{displayZoneName}</h1>
-      <div className={`grid grid-cols-4 gap-2 p-2 border-2 ${zoneColor}`}>
+    <div className="flex flex-col">
+      <div className="flex items-center gap-1 h-10">
+        <h1 className="text-xl">{displayZoneName}</h1>
+        <button
+          onClick={() => handleResetBtnOnClick(displayZoneNum, displayZoneName)}
+          className={`flex justify-center items-center size-8 transition-all ${
+            isZoneAllZero(displayZoneNum)
+              ? "opacity-0 pointer-events-none select-none"
+              : "opacity-100"
+          }`}
+        >
+          <ResetIcon />
+        </button>
+      </div>
+      <div
+        className={`grid grid-cols-4 gap-2 p-2 border-2 rounded-md ${zoneColor}`}
+      >
         {items
           .filter((v) => v.displayZone === displayZoneNum)
           .map((v, i) => (
@@ -89,6 +104,10 @@ export const DisplayZone = ({
               onTouchEnd={handleLongPressEnd}
               className={`relative flex justify-center items-center active:bg-yellow-200 rounded-lg shadow-md p-2 h-20 text-center hover:drop-shadow-md transition-all ${
                 counts[v.shortName] === 0 ? "bg-gray-200" : "bg-red-200"
+              } ${
+                v.shortName === ""
+                  ? "opacity-50 pointer-events-none select-none"
+                  : ""
               }`}
             >
               <p>{v.shortName}</p>
@@ -100,9 +119,6 @@ export const DisplayZone = ({
                   counts[v.shortName] === 0
                     ? "bg-gray-300 text-gray-400"
                     : "bg-red-400 text-yellow-100"
-                } ${
-                  v.shortName === "" &&
-                  "opacity-50 pointer-events-none select-none"
                 }`}
               >
                 <p className="text-sm font-semibold text-inherit">
@@ -112,15 +128,6 @@ export const DisplayZone = ({
             </div>
           ))}
       </div>
-      <button
-        onClick={() => handleResetBtnOnClick(displayZoneNum, displayZoneName)}
-        className={`w-40 h-14 rounded-xl bg-slate-300 ${
-          isZoneAllZero(displayZoneNum) &&
-          "opacity-50 pointer-events-none select-none"
-        }`}
-      >
-        리셋
-      </button>
     </div>
   );
 };

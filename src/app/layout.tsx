@@ -15,12 +15,14 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className="mx-auto max-w-md h-[100dvh] overflow-y-hidden border-2">
-        <header className="sticky top-0 flex justify-center items-center w-full h-[9dvh] px-5 bg-gray-300" />
+        <header className="sticky top-0 flex justify-center items-center w-full h-[9dvh] px-5 bg-gray-300">
+          <p className="absolute right-6">ver {APP_VERSION}</p>
+        </header>
         <main className="w-full h-[calc(100dvh-18dvh)] px-6 py-8 overflow-y-auto overflow-x-hidden scrollbar-hide antialiased border-2">
           {children}
         </main>
         <footer className="sticky bottom-0 flex justify-center items-center w-full h-[9dvh] px-5 bg-gray-300">
-          <p className="absolute right-6">ver {APP_VERSION}</p>
+          <p>확인 - 창고 - 전산 - 진열</p>
         </footer>
       </body>
     </html>

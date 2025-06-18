@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { items } from "@/data/items";
 import { DisplayZone } from "@/components/count/DisplayZone";
 
