@@ -42,12 +42,14 @@ export default function Home() {
     }
   };
 
-  const handleResetBtnOnClick = () => {
-    const reset: Record<string, number> = {};
-    items.forEach((v) => {
-      reset[v.shortName] = 0;
-    });
-    setCounts(reset);
+  const handleResetBtnOnClick = (displayZone: number) => {
+    const newCounts = { ...counts };
+    items
+      .filter((v) => v.displayZone === displayZone)
+      .forEach((v) => {
+        newCounts[v.shortName] = 0;
+      });
+    setCounts(newCounts);
   };
 
   return (
@@ -91,7 +93,7 @@ export default function Home() {
           ))}
       </div>
       <button
-        onClick={handleResetBtnOnClick}
+        onClick={() => handleResetBtnOnClick(1)}
         className="w-40 h-14 rounded-xl bg-slate-300"
       >
         리셋
@@ -135,7 +137,7 @@ export default function Home() {
           ))}
       </div>
       <button
-        onClick={handleResetBtnOnClick}
+        onClick={() => handleResetBtnOnClick(2)}
         className="w-40 h-14 rounded-xl bg-slate-300"
       >
         리셋
@@ -179,7 +181,7 @@ export default function Home() {
           ))}
       </div>
       <button
-        onClick={handleResetBtnOnClick}
+        onClick={() => handleResetBtnOnClick(3)}
         className="w-40 h-14 rounded-xl bg-slate-300"
       >
         리셋
@@ -223,7 +225,7 @@ export default function Home() {
           ))}
       </div>
       <button
-        onClick={handleResetBtnOnClick}
+        onClick={() => handleResetBtnOnClick(4)}
         className="w-40 h-14 rounded-xl bg-slate-300"
       >
         리셋
@@ -267,7 +269,7 @@ export default function Home() {
           ))}
       </div>
       <button
-        onClick={handleResetBtnOnClick}
+        onClick={() => handleResetBtnOnClick(5)}
         className="w-40 h-14 rounded-xl bg-slate-300"
       >
         리셋
@@ -311,7 +313,7 @@ export default function Home() {
           ))}
       </div>
       <button
-        onClick={handleResetBtnOnClick}
+        onClick={() => handleResetBtnOnClick(6)}
         className="w-40 h-14 rounded-xl bg-slate-300"
       >
         리셋
@@ -355,7 +357,7 @@ export default function Home() {
           ))}
       </div>
       <button
-        onClick={handleResetBtnOnClick}
+        onClick={() => handleResetBtnOnClick(7)}
         className="w-40 h-14 rounded-xl bg-slate-300"
       >
         리셋
