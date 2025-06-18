@@ -69,6 +69,22 @@
 - 빈 진열칸 오류 수정
   - 선택되지 않도록 다시 수정
 
+#### 0.3.1
+
+- recoil, next.js 호환 이슈
+  - 14ver 다운그레이드
+  - 각종 오류 해결 및 설정값 재설정
+- Recoil 설치
+  - 스텝별로 페이지네이션 목표
+  - steps atom 작성
+- Provider
+  - RecoilRoot 설정
+- 스텝별 CSS
+  - 이전, 다음 버전 클릭 시 해당 스텝 표시
+  - Header와 Footer에 배치
+- Layout 컴포넌트 제작
+  - Header와 Footer 컴토넌트 제작
+
 ### 추가 사항
 
 - git 연결
@@ -93,13 +109,7 @@
   - tailwind.config.js 설정
     - colors
     - fontFamily
-- data
-  - name: string
-  - shortName: string
-  - defaultCount: number
-  - displayZone: number
-- 리셋 버튼 해당 진열대에만 적용
 - 창고 진열 순서에 따라 정렬
 - 저장 버튼 클릭 시 변동 방지
 - 카운트 한 품목만 filter되어 최종 확인 (전산 입력 때에도 활용 가능)
-- 빈 공간 선택 안되게
+- 확인, 창고, 전산, 진열

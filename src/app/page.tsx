@@ -1,7 +1,8 @@
 "use client";
+
 import { useState } from "react";
 import { items } from "@/data/items";
-import { DisplayZone } from "@/components/count/DisplayZone";
+import DisplayZone from "@/components/count/DisplayZone";
 
 export default function Home() {
   const [counts, setCounts] = useState<Record<string, number>>(() => {

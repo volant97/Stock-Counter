@@ -1,9 +1,10 @@
 "use client";
+
 import React, { useRef } from "react";
 import { items } from "@/data/items";
 import { ResetIcon } from "../icons/ResetIcon";
 
-interface DisplayZoneProps {
+interface Props {
   displayZoneNum: number;
   displayZoneName: string;
   counts: Record<string, number>;
@@ -11,13 +12,13 @@ interface DisplayZoneProps {
   zoneColor: string;
 }
 
-export const DisplayZone = ({
+const DisplayZone = ({
   displayZoneNum,
   displayZoneName,
   counts,
   setCounts,
   zoneColor,
-}: DisplayZoneProps) => {
+}: Props) => {
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const isLongPressedRef = useRef(false);
 
@@ -131,3 +132,5 @@ export const DisplayZone = ({
     </div>
   );
 };
+
+export default DisplayZone;
