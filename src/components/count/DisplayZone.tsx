@@ -34,12 +34,19 @@ const DisplayZone = ({
   };
 
   const handleLongPressStart = (shortName: string) => {
+    isLongPressedRef.current = false;
+
     timerRef.current = setTimeout(() => {
       setCounts((prev) => ({
         ...prev,
         [shortName]: 0,
       }));
+
       isLongPressedRef.current = true;
+
+      if (navigator.vibrate) {
+        navigator.vibrate(100);
+      }
     }, 1500);
   };
 
@@ -111,7 +118,7 @@ const DisplayZone = ({
                   : ""
               }`}
             >
-              <p>{v.shortName}</p>
+              <p className="select-none">{v.shortName}</p>
               <div className="absolute top-1 left-1 opacity-30">
                 <p>{v.defaultCount}</p>
               </div>
