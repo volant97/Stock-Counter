@@ -3,23 +3,32 @@
 import React from "react";
 import { stepsState } from "@/recoil/steps";
 import { useRecoilState } from "recoil";
+import { useRouter } from "next/navigation";
 
 const StepBtnContainer = () => {
   const [step, setStep] = useRecoilState(stepsState);
+  const router = useRouter();
 
   const handlePrevBtnClick = () => {
     if (step === 1) {
       setStep(4);
+      router.push("4");
+    } else if (step === 2) {
+      setStep(1);
+      router.push("/");
     } else {
       setStep(step - 1);
+      router.push(`${step - 1}`);
     }
   };
 
   const handleNextBtnClick = () => {
     if (step === 4) {
       setStep(1);
+      router.push("/");
     } else {
       setStep(step + 1);
+      router.push(`${step + 1}`);
     }
   };
 
