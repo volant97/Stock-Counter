@@ -1,8 +1,10 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { items } from "@/data/items";
 import { ResetIcon } from "../icons/ResetIcon";
+import { useRecoilValue } from "recoil";
+import { allSortedState } from "@/recoil/sorted";
 
 interface Props {
   displayZoneNum: number;
@@ -23,6 +25,7 @@ const DisplayZone = ({
   const isLongPressedRef = useRef(false);
 
   const [isSorted, setIsSorted] = useState<boolean>(false);
+  const isAllSorted = useRecoilValue(allSortedState);
 
   const handleItemBoxClick = (shortName: string) => {
     if (isLongPressedRef.current) {
@@ -84,6 +87,10 @@ const DisplayZone = ({
       .every((v) => counts[v.shortName] === 0);
   };
 
+  useEffect(() => {
+    setIsSorted(isAllSorted);
+  }, [isAllSorted]);
+
   return (
     <div className="flex flex-col">
       <div className="relative flex items-center gap-1 h-10">
@@ -108,9 +115,12 @@ const DisplayZone = ({
       <div
         className={`grid grid-cols-4 gap-2 p-2 border-2 rounded-md ${zoneColor}`}
       >
-        {!isSorted
+        {isSorted || isAllSorted
           ? items
-              .filter((v) => v.displayZone === displayZoneNum)
+              .filter(
+                (v) =>
+                  v.displayZone === displayZoneNum && counts[v.shortName] !== 0
+              )
               .map((v, i) => (
                 <div
                   key={i}
@@ -146,10 +156,7 @@ const DisplayZone = ({
                 </div>
               ))
           : items
-              .filter(
-                (v) =>
-                  v.displayZone === displayZoneNum && counts[v.shortName] !== 0
-              )
+              .filter((v) => v.displayZone === displayZoneNum)
               .map((v, i) => (
                 <div
                   key={i}
